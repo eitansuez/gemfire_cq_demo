@@ -5,4 +5,9 @@ class Stock {
   double price
 
   Set subscribers = []
+
+  @Override
+  String toString() {
+    "$symbol @ $price"
+  }
 }

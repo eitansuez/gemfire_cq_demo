@@ -1,7 +1,7 @@
 package io.pivotal.stocks
 
 import com.gemstone.gemfire.cache.Region
-import com.gemstone.gemfire.cache.query.SelectResults
+import com.gemstone.gemfire.cache.query.*
 import io.pivotal.stocks.domain.Stock
 
 class StocksRepo {
@@ -9,6 +9,10 @@ class StocksRepo {
 
   StocksRepo(Region stocksRegion) {
     this.stocks = stocksRegion
+  }
+
+  def clear() {
+    stocks.clear()
   }
 
   def addStock(symbol, price) {
@@ -21,6 +25,13 @@ class StocksRepo {
     stocks.put(symbol, updatedStock)
   }
 
+  def updatePrice(symbol, price) {
+    updateStock(symbol, { stock ->
+      stock.price = price
+      stock
+    })
+  }
+
   def subscribeToStock(symbol, String... users) {
     updateStock(symbol, { stock ->
       users.each { user ->
@@ -31,10 +42,35 @@ class StocksRepo {
   }
 
   def getStocksFor(subscriber) {
-    def qs = stocks.getRegionService().getQueryService()
-    def query = qs.newQuery('select distinct * from /stocks where $1 in subscribers order by symbol')
+    def query = queryService().newQuery('select distinct * from /stocks where $1 in subscribers order by symbol')
     SelectResults results = query.execute(subscriber) as SelectResults
     return results.asList()
+  }
+
+  private def queryService() {
+    stocks.getRegionService().getQueryService()
+  }
+
+  private def cqAttributes() {
+    CqAttributesFactory cqf = new CqAttributesFactory()
+    CqListener stocksListener = new StocksListener()
+    cqf.addCqListener(stocksListener)
+    cqf.create()
+  }
+
+  def cqStocks(subscriber) {
+    def cqAttributes = cqAttributes()
+
+    String queryStr = "select * from /stocks where '$subscriber' in subscribers"
+
+    CqQuery myStocksTracker = queryService().newCq("myStocks", queryStr, cqAttributes)
+
+      SelectResults sResults = myStocksTracker.executeWithInitialResults()
+      def stocks = sResults.collect { Struct result ->
+        result.get('value')
+      }
+      println "initial results: " + stocks
+
   }
 
 }

@@ -48,4 +48,31 @@ class Specs extends Specification {
     myStocks[1].symbol == 'MSFT'
   }
 
+  def "scenario where stock prices move"() {
+    when: 'i define some stocks'
+    repo.addStock('MSFT', 100)
+    repo.addStock('VMW', 80)
+    repo.addStock('GOOG', 120)
+
+    and: 'i subscribe some folks to some mix of these stocks'
+    repo.subscribeToStock('MSFT', 'Eitan', 'John', 'Bill')
+    repo.subscribeToStock('GOOG', 'Eitan')
+    repo.subscribeToStock('VMW', 'John')
+
+    and: 'i update the price of MSFT (concerns eitan)'
+    repo.updatePrice('MSFT', 102)
+    repo.updatePrice('MSFT', 104)
+    repo.updatePrice('MSFT', 106)
+    repo.updatePrice('MSFT', 108)
+    repo.updatePrice('MSFT', 110)
+
+    and: 'i update the price of VMW (does not concern eitan)'
+    repo.updatePrice('VMW', 85)
+    repo.updatePrice('VMW', 90)
+    repo.updatePrice('VMW', 95)
+
+    then:
+    true
+  }
+
 }

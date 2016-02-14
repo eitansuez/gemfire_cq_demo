@@ -19,6 +19,10 @@ class StocksRepo {
     stocks.put(symbol, new Stock(symbol: symbol, price: price))
   }
 
+  def getPrice(symbol) {
+    stocks.get(symbol).price
+  }
+
   def updateStock(symbol, closure) {
     def stock = stocks.get(symbol)
     def updatedStock = closure.call(stock)

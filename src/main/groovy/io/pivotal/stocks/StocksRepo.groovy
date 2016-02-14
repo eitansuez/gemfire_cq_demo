@@ -51,15 +51,15 @@ class StocksRepo {
     stocks.getRegionService().getQueryService()
   }
 
-  private def cqAttributes() {
+  private def cqAttributes(CqListener listener) {
     CqAttributesFactory cqf = new CqAttributesFactory()
-    CqListener stocksListener = new StocksListener()
+    CqListener stocksListener = listener
     cqf.addCqListener(stocksListener)
     cqf.create()
   }
 
-  def cqStocks(subscriber) {
-    def cqAttributes = cqAttributes()
+  def cqStocks(subscriber, CqListener listener = new StocksListener()) {
+    def cqAttributes = cqAttributes(listener)
 
     String queryStr = "select * from /stocks where '$subscriber' in subscribers"
 

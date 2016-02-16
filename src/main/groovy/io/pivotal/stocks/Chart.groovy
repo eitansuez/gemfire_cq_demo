@@ -83,6 +83,7 @@ class Chart extends Application {
     chart.id = 'StocksChart'
     chart.title = 'Stocks'
     chart.animated = false
+    chart.createSymbols = false
 
     chart
   }

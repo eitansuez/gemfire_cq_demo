@@ -69,12 +69,12 @@ class StocksRepo {
 
     CqQuery myStocksTracker = queryService().newCq("myStocks", queryStr, cqAttributes)
 
-      SelectResults sResults = myStocksTracker.executeWithInitialResults()
-      def stocks = sResults.collect { Struct result ->
-        result.get('value')
-      }
-      println "initial results: " + stocks
-
+    SelectResults sResults = myStocksTracker.executeWithInitialResults()
+    def stocks = sResults.collect { Struct result ->
+      result.get('value')
+    }
+    println "initial results: " + stocks
+    stocks
   }
 
 }

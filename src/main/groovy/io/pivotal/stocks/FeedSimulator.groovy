@@ -25,7 +25,7 @@ class FeedSimulator {
 
   static def priceLowerBound = 0
   static def priceUpperBound = 200
-  static def priceFluctuationFactor = 0.15
+  static def priceFluctuationFactor = 0.20
 
   def random = new Random()
 

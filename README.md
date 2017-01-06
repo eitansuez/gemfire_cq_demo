@@ -4,16 +4,16 @@ A simple demonstration of the use of continuous queries in gemfire to notify a c
 
 1. `server` contains a simple start script and configuration to start a locator and two servers locally:
 
-    cd server
-    ./start.sh
+        cd server
+        ./start.sh
 
 2. start the Chart app
 
-    gradle chartClient
+        gradle chartClient
 
 3. start the FeedSimulator
 
-    gradle feedSimulator
+        gradle feedSimulator
 
 See the chart render prices for stocks as updates are made to prices in the region on the server.
 

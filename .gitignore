@@ -1,6 +1,7 @@
 .idea
 *.iml
 .gradle
+.gradletasknamecache
 build
 server/locator
 server/server[1-9]

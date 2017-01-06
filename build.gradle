@@ -18,3 +18,18 @@ dependencies {
 
   testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
 }
+
+task chartClient(type: JavaExec) {
+  description 'start the chart client'
+  group 'clients'
+  classpath = sourceSets.main.runtimeClasspath
+  main = 'io.pivotal.stocks.Chart'
+}
+
+task feedSimulator(type: JavaExec) {
+  description 'start the feed simulator'
+  group 'clients'
+  classpath = sourceSets.main.runtimeClasspath
+  main = 'io.pivotal.stocks.FeedSimulator'
+}
+

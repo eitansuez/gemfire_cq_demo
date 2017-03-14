@@ -1,11 +1,11 @@
 package io.pivotal.stocks
 
-import com.gemstone.gemfire.cache.Operation
-import com.gemstone.gemfire.cache.Region
-import com.gemstone.gemfire.cache.client.ClientCache
-import com.gemstone.gemfire.cache.client.ClientCacheFactory
-import com.gemstone.gemfire.cache.query.CqEvent
-import com.gemstone.gemfire.cache.query.CqListener
+import org.apache.geode.cache.Operation
+import org.apache.geode.cache.Region
+import org.apache.geode.cache.client.ClientCache
+import org.apache.geode.cache.client.ClientCacheFactory
+import org.apache.geode.cache.query.CqEvent
+import org.apache.geode.cache.query.CqListener
 import io.pivotal.stocks.domain.Stock
 import javafx.application.Application
 import javafx.application.Platform

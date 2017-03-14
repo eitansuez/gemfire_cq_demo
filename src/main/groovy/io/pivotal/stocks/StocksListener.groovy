@@ -1,7 +1,7 @@
 package io.pivotal.stocks
 
-import com.gemstone.gemfire.cache.query.CqEvent
-import com.gemstone.gemfire.cache.query.CqListener
+import org.apache.geode.cache.query.CqEvent
+import org.apache.geode.cache.query.CqListener
 
 class StocksListener implements CqListener {
 

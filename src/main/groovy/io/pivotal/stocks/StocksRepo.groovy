@@ -1,7 +1,7 @@
 package io.pivotal.stocks
 
-import com.gemstone.gemfire.cache.Region
-import com.gemstone.gemfire.cache.query.*
+import org.apache.geode.cache.Region
+import org.apache.geode.cache.query.*
 import io.pivotal.stocks.domain.Stock
 
 class StocksRepo {

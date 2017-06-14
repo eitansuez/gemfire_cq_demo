@@ -3,5 +3,5 @@
 .gradle
 .gradletasknamecache
 build
-server/locator
-server/server[1-9]
+cluster/locator
+cluster/server[1-9]

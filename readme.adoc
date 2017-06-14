@@ -9,13 +9,13 @@ cd cluster
 ./start.sh
 ----
 
-. start the Chart app
+. start the `Chart` app
 +
 ----
 gradle chartClient
 ----
 
-. start the FeedSimulator
+. start the `FeedSimulator`
 +
 ----
 gradle feedSimulator

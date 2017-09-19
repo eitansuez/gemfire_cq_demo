@@ -3,8 +3,7 @@ group = 'io.pivotal.training'
 version = '1.0'
 
 apply plugin: 'groovy'
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+sourceCompatibility = 1.8
 
 repositories {
   mavenCentral()
@@ -14,15 +13,8 @@ repositories {
 }
 
 dependencies {
-  compile 'org.codehaus.groovy:groovy:2.4.11'
-
-  compile 'org.springframework:spring-context:4.2.4.RELEASE'
-
-  compile 'io.pivotal.gemfire:geode-core:9.1.0'
-  compile 'io.pivotal.gemfire:geode-wan:9.1.0'
-  compile 'io.pivotal.gemfire:geode-cq:9.1.0'
-
-  compile 'org.springframework.data:spring-data-gemfire:2.0.0.RC2'
+  compile 'org.codehaus.groovy:groovy:2.4.12'
+  compile 'org.springframework.data:spring-data-gemfire:2.0.0.RC3'
 
   testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
 }

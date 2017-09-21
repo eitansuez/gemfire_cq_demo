@@ -48,8 +48,9 @@ class FeedSimulator {
 
   def start() {
     new Timer().schedule({
-      def ticker = someTicker()
-      repo.updatePrice(ticker, newPrice(repo.getPrice(ticker)))
+      tickers.each { ticker ->
+        repo.updatePrice(ticker, newPrice(repo.getPrice(ticker)))
+      }
     } as TimerTask, 1000, 500)
   }
 
